@@ -1,0 +1,74 @@
+//Given an array of 5 integers, return the smallest sum of 4 integers, and the largest sum of 4 integers
+
+static void miniMaxSum(int[] arr)
+{
+    long sumTrack = 0;      //LONG datatype is necessary to contain large numbers. 
+    long minTrack = arr[0];
+    long maxTrack = arr[0];
+    foreach (long i in arr)
+    {
+        sumTrack += i;      //Sum all five integers
+        if (i > maxTrack)   //keep track of the largest integer
+        {
+            maxTrack = i;
+        }
+        if (i < minTrack)   //keeps track of the smallest integer
+        {
+            minTrack = i;
+        }
+    }
+    string minAns = (sumTrack - maxTrack).ToString(); //sum minus largest == smallest sum
+    string maxAns = (sumTrack - minTrack).ToString(); //vice versa
+    Console.WriteLine("{0} {1}", minAns, maxAns);
+}
+
+
+//given list of students actual grades, return a list of rounded grades according to the following rounding criteria:
+    //if the grade is 2 or less from the next highest multiple of 5, no rounding occurs
+    //if the rounded score is less than 40, it fail anyway, so return the actual grade
+    //if it's closer than 2 from the next multiple of 5, round up the that number
+public static int roundGrade(int grade)
+{
+    int ans = 0;
+    int remainder = grade % 5;
+    if (grade < 38) //won't get rounded, no matter what
+    {
+        ans = grade;
+    }
+    else if (remainder > 2) { ans = grade + (5 - remainder); } //this is where the actual rounding occurs
+    else { ans = grade; }
+    return ans;
+}
+
+public static List<int> gradingStudents(List<int> grades)
+{
+    List<int> ansList = new List<int>();
+    foreach (int i in grades)
+    {
+        ansList.Add(roundGrade(i));
+    }
+    return ansList;
+
+
+}
+// Complete the countApplesAndOranges function below.
+
+//given a list of apples' and oranges' landing places (relative to their trees), return the number that hit the house (located between S and T), assuming 
+// the apple tree is located at A, and the orange tree at B
+static void countApplesAndOranges(int s, int t, int a, int b, int[] apples, int[] oranges)
+{
+    int badApples = 0; //apples that hit the house
+    int badOranges = 0; //oranges that hit the house
+    foreach (int apps in apples)
+    {
+        if ((apps + a >= s) & (apps + a <= t)) { badApples += 1; }
+    }
+    foreach (int oras in oranges)
+    {
+        if ((oras + b >= s) & (oras + b <= t)) { badOranges += 1; }
+    }
+    Console.WriteLine(badApples);
+    Console.WriteLine(badOranges);
+
+
+}
