@@ -6,24 +6,15 @@
 #
 #Given a 2d Array of size N^2, calculate the difference between a 
 #Diagonal line from Top Left to Bottom Right, vs. Top Right to Bottom Left
-def forwardSlash(arr):
-    ans = 0             #Finds the sum of Top Left to Bottom Right
+
+
+def diagonal_diff():                                  # No need to use two different for loops and different functions for the same problem. 
+    diagonal1, diagonal2 = 0, 0
     for i in range(len(arr)):
-        ans += arr[i][i]
-    return ans
+        diagonal1 += arr[i][i]
+        diagonal2 += arr[i][len(arr) - 1 - i]
+    return abs(diagonal1 - diagonal2)
 
-def backSlash(arr): 
-    ans = 0
-    width = len(arr)
-    for i in range(width): #Finds the sum of Top Right to Bottom Left
-        j = width -1 - i
-        ans += arr[i][j]
-    return ans
-
-def diagonalDifference(arr):
-    leftDiag = forwardSlash(arr)
-    rightDiag = backSlash(arr)
-    return abs(leftDiag-rightDiag) #Returns absolute value of the difference
 
 # Given an Array, print the ratio of positive integers to total length
 # Do the same for Negative and Zeroes
